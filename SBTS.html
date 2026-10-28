@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Theater tICKET Booking system </title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        select, input, button {
+            padding: 10px;
+            margin: 10px;
+            width: 90%;
+        }
+
+        button {
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h2>Smart Theater Booking</h2>
+
+        <label>Select Movie:</label>
+        <select id="movie">
+            <option value="150">Avengers - ₹150</option>
+            <option value="120">Spider-Man - ₹120</option>
+            <option value="100">Lion King - ₹100</option>
+        </select>
+
+        <br>
+
+        <label>Number of Tickets:</label>
+        <input type="number" id="tickets" min="1" value="1">
+
+        <br>
+
+        <button onclick="bookTicket()">Book Ticket</button>
+
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function bookTicket() {
+            let movie = document.getElementById("movie");
+            let price = Number(movie.value);
+            let tickets = Number(
+                document.getElementById("tickets").value
+            );
+
+            if (!Number.isInteger(tickets) || tickets < 1) {
+                document.getElementById("result").innerHTML =
+                    "Please enter a valid number of tickets.";
+                return;
+            }
+
+            let total = price * tickets;
+
+            document.getElementById("result").innerHTML =
+                "Movie: " + movie.options[movie.selectedIndex].text +
+                "<br>Tickets: " + tickets +
+                "<br>Total Price: ₹" + total +
+                "<br>Booking Successful!";
+        }
+    </script>
+
+</body>
+</html>
